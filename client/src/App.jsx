@@ -12,6 +12,7 @@ import Pricing from "./pages/Pricing";
 import InterviewReport from "./pages/InterviewReport";
 
 export const serverUrl = import.meta.env.VITE_SERVER_URL || "http://localhost:4000";
+axios.defaults.withCredentials = true;
 
 function App() {
   const dispatch = useDispatch();
