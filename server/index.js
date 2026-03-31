@@ -11,9 +11,14 @@ import paymentRouter from "./routes/payment.route.js";
 
 const app = express();
 app.set("trust proxy", 1);
+
+const allowedOrigin = process.env.ALLOWED_ORIGIN
+  ? process.env.ALLOWED_ORIGIN.replace(/\/$/, "")
+  : "http://localhost:5173";
+
 app.use(
   cors({
-    origin: process.env.ALLOWED_ORIGIN || "http://localhost:5173",
+    origin: allowedOrigin,
     credentials: true,
   }),
 );

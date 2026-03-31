@@ -3,12 +3,15 @@ import jwt from "jsonwebtoken";
 const isAuth = async (req, res, next) => {
   try {
     let { token } = req.cookies;
+    console.log("isAuth: Token received from cookies:", !!token);
 
     if (!token) {
       return res.status(400).json({ message: "user does not have a token" });
     }
 
     const verifyToken = jwt.verify(token, process.env.JWT_SECRET);
+    console.log("isAuth: Token verification status:", !!verifyToken);
+
     if (!verifyToken) {
       return res
         .status(400)
