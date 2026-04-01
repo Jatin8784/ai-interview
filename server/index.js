@@ -21,7 +21,7 @@ app.use(
     origin: (origin, callback) => {
       // Allow requests with no origin (like mobile apps or curl)
       if (!origin) return callback(null, true);
-      
+
       const allowed = allowedOrigin.split(",");
       if (allowed.includes(origin) || origin.endsWith(".vercel.app")) {
         callback(null, true);
@@ -31,7 +31,13 @@ app.use(
     },
     credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-    allowedHeaders: ["Content-Type", "Authorization", "X-Requested-With", "Accept", "Origin"],
+    allowedHeaders: [
+      "Content-Type",
+      "Authorization",
+      "X-Requested-With",
+      "Accept",
+      "Origin",
+    ],
   }),
 );
 
@@ -42,6 +48,10 @@ app.use("/api/auth", authRouter);
 app.use("/api/user", userRouter);
 app.use("/api/interview", interviewRouter);
 app.use("/api/payment", paymentRouter);
+
+app.get("/", (req, res) => {
+  res.send({ activeStatus: "active", error: false });
+});
 
 const PORT = process.env.PORT || 4000;
 app.listen(PORT, () => {
