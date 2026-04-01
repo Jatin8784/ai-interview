@@ -18,6 +18,7 @@ export const googleAuth = async (req, res) => {
       sameSite: "none",
       maxAge: 7 * 24 * 60 * 60 * 1000,
       path: "/",
+      partitioned: true, // For modern browser third-party cookie support
     });
     return res.status(200).json(user);
   } catch (error) {
