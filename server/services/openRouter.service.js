@@ -5,6 +5,16 @@ export const askAi = async (messages) => {
     if (!messages || !Array.isArray(messages) || messages.length === 0) {
       throw new Error("Message array is empty.");
     }
+
+    console.log("===== OpenRouter Debug =====");
+    console.log("API Key exists:", !!process.env.OPENROUTER_API_KEY);
+    console.log("API Key length:", process.env.OPENROUTER_API_KEY?.length);
+    console.log(
+      "API Key prefix:",
+      process.env.OPENROUTER_API_KEY?.substring(0, 12),
+    );
+    console.log("Model:", "openai/gpt-4o-mini");
+
     const res = await axios.post(
       "https://openrouter.ai/api/v1/chat/completions",
       {
