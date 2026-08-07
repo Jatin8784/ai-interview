@@ -15,6 +15,7 @@ import { setUserData } from "../redux/userSlice";
 
 import { FaArrowLeft } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
+import { BsPatchCheckFill } from "react-icons/bs";
 
 function Step1Setup({ onStart, theme, toggleTheme }) {
   const navigate = useNavigate();
